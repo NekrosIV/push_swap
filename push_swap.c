@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:19:56 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/16 10:48:06 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/22 10:30:22 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ void	free_stack(t_node **stack)
 		current = tmp;
 	}
 	*stack = NULL;
+}
+
+void	free_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
 
 void	free_err(t_node **a)
@@ -80,6 +93,8 @@ int	is_good_int(char *str)
 		int_limit = ft_itoa_nosigne(INT_MIN);
 	else
 		int_limit = ft_itoa_nosigne(INT_MAX);
+	if (!int_limit)
+		return (0);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i] == '0' && str[i + 1] != '\0')
@@ -89,10 +104,9 @@ int	is_good_int(char *str)
 	if (len_str > max_len)
 		return (0);
 	if (len_str == max_len)
-	{
 		if (ft_strncmp(&str[i], int_limit, len_str) > 0)
 			return (0);
-	}
+	free(int_limit);
 	return (1);
 }
 
@@ -186,22 +200,19 @@ int	main(int ac, char **av)
 	a = 0;
 	b = 0;
 	i = 1;
-	if (ac < 2)
+	if (ac < 2 || !av[1][0])
 		return (0);
 	else if (ac == 2)
 		av = ft_split(av[i--], ' ');
 	stack_init(&a, av + i);
 	if (!is_sorted(&a))
 	{
-		print_stack("stack a", a);
 		if (lst_len(a) <= 3)
 			ft_sort_three(&a);
 		else
 			ft_sort(&a, &b);
-		print_stack("stack a", a);
-		print_stack("stack b", b);
 	}
-	else
-		print_stack("stack b", b);
+	if (i == 0)
+		free_split(av);
 	free_stack(&a);
 }
