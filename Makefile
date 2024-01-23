@@ -4,11 +4,11 @@ CC = cc
 CFLAGS = -g3
 LIBFTDIR = ./libft
 
-SRCS = push_swap.c swap.c push.c rotate.c rrotate.c ft_itoa_nosigne.c lst_utils.c lst_utils2.c \
-		algo.c 
+SRCS = ./src/push_swap.c ./src/swap.c ./src/push.c ./src/rotate.c ./src/rrotate.c ./src/ft_itoa_nosigne.c ./src/lst_utils.c ./src/lst_utils2.c \
+		./src/algo.c ./src/free.c ./src/parsing.c
 OBJS = $(SRCS:.c=.o)
 
-HEADERS = ft_printf.h
+HEADERS = ./include/push_swap.h
 
 # COLOR #
 GREEN	= \033[38;5;76m
@@ -56,11 +56,11 @@ makelibft:
 	@cd $(LIBFTDIR) && make
 
 $(NAME): makelibft $(OBJS) 
-	@$(CC) $(CFLAGS) -I. -o $@ $(OBJS) -L ${LIBFTDIR} -lft  
+	@$(CC) $(CFLAGS) -I$(HEADERS) -o $@ $(OBJS) -L ${LIBFTDIR} -lft  
 	
 %.o: %.c
 	@printf "$(LBLUE)[Compilation]$(RESET) In progress... $(GREEN)$<" && \
-	$(CC) $(CFLAGS) -I. -c $< -o $@ && \
+	$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@ && \
 	printf "\r$(LBLUE)[Compilation]$(RESET) Completed   ... $(GREEN)$<" && \
 	printf " $(LBLUE)[$(RESET)$(CC)$(LBLUE)/]$(RESET)\n"
 
