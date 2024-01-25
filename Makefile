@@ -81,6 +81,10 @@ $(NAME_BONUS) : ${BONUS_OBJS} ${OBJS} makelibft
 
 clean:
 	@cd $(LIBFTDIR) && make clean
+	@printf "$(RED)Cleaning Libft...  Removing $$obj... " && \
+		sleep 0.01 && \
+		rm -f ${OBJ_main} && \
+		printf "\r"; 
 	@for obj in $(OBJS); do \
 		printf "$(RED)Cleaning Libft...  Removing $$obj... " && \
 		sleep 0.01 && \
@@ -98,7 +102,7 @@ clean:
 	
 fclean: clean
 	@cd $(LIBFTDIR) && make fclean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME_BONUS) 
 	
 re: fclean all
 
