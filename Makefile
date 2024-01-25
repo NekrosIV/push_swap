@@ -1,12 +1,22 @@
 NAME = push_swap
+NAME_BONUS = checker
 LIBFTNAME = libft.a
 CC = cc
-CFLAGS = -g3
+CFLAGS = -Wall -Wextra -Werror -g3
 LIBFTDIR = ./libft
 
-SRCS = ./src/push_swap.c ./src/swap.c ./src/push.c ./src/rotate.c ./src/rrotate.c ./src/ft_itoa_nosigne.c ./src/lst_utils.c ./src/lst_utils2.c \
-		./src/algo.c ./src/free.c ./src/parsing.c
+SRCS = ./src/swap.c ./src/push.c ./src/rotate.c ./src/rrotate.c ./src/ft_itoa_nosigne.c ./src/lst_utils.c ./src/lst_utils2.c \
+		./src/algo.c ./src/free.c ./src/parsing.c ./src/stack_init.c 
+
+SRC_main = ./src/push_swap.c 
+	
 OBJS = $(SRCS:.c=.o)
+
+OBJ_main = $(SRC_main:.c=.o)
+
+BONUS_SRCS = ./bonus/checker_bonus.c ./bonus/get_next_line_utils.c ./bonus/get_next_line.c ./bonus/cheler_utils_bonus.c
+
+BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 
 HEADERS = ./include/push_swap.h
 
@@ -55,8 +65,8 @@ all: $(NAME)
 makelibft:
 	@cd $(LIBFTDIR) && make
 
-$(NAME): makelibft $(OBJS) 
-	@$(CC) $(CFLAGS) -I$(HEADERS) -o $@ $(OBJS) -L ${LIBFTDIR} -lft  
+$(NAME): makelibft  $(OBJ_main) $(OBJS)
+	@$(CC) $(CFLAGS) -I$(HEADERS) -o $@ $(OBJ_main) $(OBJS) -L ${LIBFTDIR} -lft  
 	
 %.o: %.c
 	@printf "$(LBLUE)[Compilation]$(RESET) In progress... $(GREEN)$<" && \
@@ -64,10 +74,20 @@ $(NAME): makelibft $(OBJS)
 	printf "\r$(LBLUE)[Compilation]$(RESET) Completed   ... $(GREEN)$<" && \
 	printf " $(LBLUE)[$(RESET)$(CC)$(LBLUE)/]$(RESET)\n"
 
+bonus : $(NAME_BONUS)
+
+$(NAME_BONUS) : ${BONUS_OBJS} ${OBJS} makelibft
+	@$(CC) $(CFLAGS) -I$(HEADERS) -o $@ $(BONUS_OBJS) $(OBJS) -L ${LIBFTDIR} -lft
 
 clean:
 	@cd $(LIBFTDIR) && make clean
 	@for obj in $(OBJS); do \
+		printf "$(RED)Cleaning Libft...  Removing $$obj... " && \
+		sleep 0.01 && \
+		rm -f $$obj && \
+		printf "\r"; \
+	done
+	@for obj in $(BONUS_OBJS); do \
 		printf "$(RED)Cleaning Libft...  Removing $$obj... " && \
 		sleep 0.01 && \
 		rm -f $$obj && \
