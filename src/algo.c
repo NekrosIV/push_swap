@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:20:43 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/23 12:01:55 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/25 11:53:46 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	good_place_in_a(t_node *stack_a, int nbr_push)
 
 int	rarb(t_node **a, t_node **b, int c, char s)
 {
-	if (s == 'a')
+	if (s == 'b')
 	{
 		while ((*a)->nbr != c && good_place_in_b(*b, c) > 0)
 			rr(a, b);
@@ -93,7 +93,7 @@ int	rarb(t_node **a, t_node **b, int c, char s)
 // reverse direction as required amount.
 int	rrarrb(t_node **a, t_node **b, int c, char s)
 {
-	if (s == 'a')
+	if (s == 'b')
 	{
 		while ((*a)->nbr != c && good_place_in_b(*b, c) > 0)
 			rrr(a, b);
@@ -120,7 +120,7 @@ int	rrarrb(t_node **a, t_node **b, int c, char s)
 // the stack_b in oppsite direction of stack_a as required amount.
 int	rrarb(t_node **a, t_node **b, int c, char s)
 {
-	if (s == 'a')
+	if (s == 'b')
 	{
 		while ((*a)->nbr != c)
 			rra(a);
@@ -143,7 +143,7 @@ int	rrarb(t_node **a, t_node **b, int c, char s)
 // the stack_a in oppsite direction of stack_a as required amount.
 int	rarrb(t_node **a, t_node **b, int c, char s)
 {
-	if (s == 'a')
+	if (s == 'b')
 	{
 		while ((*a)->nbr != c)
 			ra(a);
@@ -166,13 +166,22 @@ int	rarrb(t_node **a, t_node **b, int c, char s)
 // we should rotate the stacks together.
 // Because after a certain amoun of rotate, we will
 // proceed only with one stack rotation.
-int	is_rarb(t_node *a, t_node *b, int c)
+int	is_rarb(t_node *a, t_node *b, int c, char s)
 {
 	int	i;
 
-	i = good_place_in_b(b, c);
-	if (i < ft_find_index(a, c))
-		i = ft_find_index(a, c);
+	if (s == 'b')
+	{
+		i = good_place_in_b(b, c);
+		if (i < ft_find_index(a, c))
+			i = ft_find_index(a, c);
+	}
+	else
+	{
+		i = good_place_in_a(a, c);
+		if (i < ft_find_index(b, c))
+			i = ft_find_index(b, c);
+	}
 	return (i);
 }
 
@@ -181,41 +190,69 @@ int	is_rarb(t_node *a, t_node *b, int c)
 // rotation. Since here we have reverse rotate,rather than index number,
 // we check reverse index number which is
 // calculated by list_size - index_number.
-int	is_rrarrb(t_node *a, t_node *b, int c)
+int	is_rrarrb(t_node *a, t_node *b, int c, char s)
 {
 	int	i;
 
 	i = 0;
-	if (good_place_in_b(b, c))
-		i = lst_len(b) - good_place_in_b(b, c);
-	if ((i < (lst_len(a) - ft_find_index(a, c))) && ft_find_index(a, c))
-		i = lst_len(a) - ft_find_index(a, c);
+	if (s == 'b')
+	{
+		if (good_place_in_b(b, c))
+			i = lst_len(b) - good_place_in_b(b, c);
+		if ((i < (lst_len(a) - ft_find_index(a, c))))
+			i = lst_len(a) - ft_find_index(a, c);
+	}
+	else
+	{
+		if (good_place_in_a(a, c))
+			i = lst_len(a) - good_place_in_a(a, c);
+		if (i < (lst_len(b) - ft_find_index(b, c)))
+			i = lst_len(b) - ft_find_index(b, c);
+	}
 	return (i);
 }
 
 // Again, this function makes similar calculations.
 // This function do same calculations for rra+rb case.
-int	is_rrarb(t_node *a, t_node *b, int c)
+int	is_rrarb(t_node *a, t_node *b, int c, char s)
 {
 	int	i;
 
 	i = 0;
-	if (ft_find_index(a, c))
-		i = lst_len(a) - ft_find_index(a, c);
-	i = good_place_in_b(b, c) + i;
+	if (s == 'b')
+	{
+		if (ft_find_index(a, c))
+			i = lst_len(a) - ft_find_index(a, c);
+		i = good_place_in_b(b, c) + i;
+	}
+	else
+	{
+		if (ft_find_index(b, c))
+			i = lst_len(b) - ft_find_index(b, c);
+		i = good_place_in_a(a, c) + i;
+	}
 	return (i);
 }
 
 // Again, this function makes similar calculations.
 // This function do same calculations for ra+rrb case.
-int	is_rarrb(t_node *a, t_node *b, int c)
+int	is_rarrb(t_node *a, t_node *b, int c, char s)
 {
 	int	i;
 
 	i = 0;
-	if (good_place_in_b(b, c))
-		i = lst_len(b) - good_place_in_b(b, c);
-	i = ft_find_index(a, c) + i;
+	if (s == 'b')
+	{
+		if (good_place_in_b(b, c))
+			i = lst_len(b) - good_place_in_b(b, c);
+		i = ft_find_index(a, c) + i;
+	}
+	else
+	{
+		if (good_place_in_a(a, c))
+			i = lst_len(a) - good_place_in_a(a, c);
+		i = ft_find_index(b, c) + i;
+	}
 	return (i);
 }
 
@@ -228,23 +265,26 @@ int	is_rarrb(t_node *a, t_node *b, int c)
 // @param a - Pointeur vers la pile A.
 // @param b - Pointeur vers la pile B.
 // @return Le nombre minimal de rotations nécessaires.
-int	ft_rotate_type_ab(t_node *a, t_node *b)
+int	ft_rotate_type(t_node *a, t_node *b, char s)
 {
 	int		i;
 	t_node	*tmp;
 
-	tmp = a;
+	if (s == 'b')
+		tmp = a;
+	else
+		tmp = b;
 	i = INT_MAX;
 	while (tmp)
 	{
-		if (i > is_rarb(a, b, tmp->nbr))
-			i = is_rarb(a, b, tmp->nbr);
-		if (i > is_rrarrb(a, b, tmp->nbr))
-			i = is_rrarrb(a, b, tmp->nbr);
-		if (i > is_rarrb(a, b, tmp->nbr))
-			i = is_rarrb(a, b, tmp->nbr);
-		if (i > is_rrarb(a, b, tmp->nbr))
-			i = is_rrarb(a, b, tmp->nbr);
+		if (i > is_rarb(a, b, tmp->nbr, s))
+			i = is_rarb(a, b, tmp->nbr, s);
+		if (i > is_rrarrb(a, b, tmp->nbr, s))
+			i = is_rrarrb(a, b, tmp->nbr, s);
+		if (i > is_rarrb(a, b, tmp->nbr, s))
+			i = is_rarrb(a, b, tmp->nbr, s);
+		if (i > is_rrarb(a, b, tmp->nbr, s))
+			i = is_rrarb(a, b, tmp->nbr, s);
 		tmp = tmp->next;
 	}
 	return (i);
@@ -264,121 +304,51 @@ int	ft_rotate_type_ab(t_node *a, t_node *b)
 void	push_sort_b(t_node **stack_a, t_node **stack_b)
 {
 	int		i;
+	char	s;
 	t_node	*current;
 
+	s = 'b';
 	while (lst_len(*stack_a) > 3 && !is_sorted(stack_a))
 	{
 		current = *stack_a;
-		i = ft_rotate_type_ab(*stack_a, *stack_b);
+		i = ft_rotate_type(*stack_a, *stack_b, s);
 		while (i >= 0)
 		{
-			if (i == is_rarb(*stack_a, *stack_b, current->nbr))
-				i = rarb(stack_a, stack_b, current->nbr, 'a');
-			else if (i == is_rrarrb(*stack_a, *stack_b, current->nbr))
-				i = rrarrb(stack_a, stack_b, current->nbr, 'a');
-			else if (i == is_rarrb(*stack_a, *stack_b, current->nbr))
-				i = rarrb(stack_a, stack_b, current->nbr, 'a');
-			else if (i == is_rrarb(*stack_a, *stack_b, current->nbr))
-				i = rrarb(stack_a, stack_b, current->nbr, 'a');
+			if (i == is_rarb(*stack_a, *stack_b, current->nbr, s))
+				i = rarb(stack_a, stack_b, current->nbr, s);
+			else if (i == is_rrarrb(*stack_a, *stack_b, current->nbr, s))
+				i = rrarrb(stack_a, stack_b, current->nbr, s);
+			else if (i == is_rarrb(*stack_a, *stack_b, current->nbr, s))
+				i = rarrb(stack_a, stack_b, current->nbr, s);
+			else if (i == is_rrarb(*stack_a, *stack_b, current->nbr, s))
+				i = rrarb(stack_a, stack_b, current->nbr, s);
 			else
 				current = current->next;
 		}
 	}
 }
 
-// This function calculates the required amount of rotation.
-// Calculations are done for ra+rb case.
-int	is_rarb_a(t_node *a, t_node *b, int c)
-{
-	int	i;
-
-	i = good_place_in_a(a, c);
-	if (i < ft_find_index(b, c))
-		i = ft_find_index(b, c);
-	return (i);
-}
-
-// This function calculates the required amount of rotation.
-// Calculations are done for rra+rrb case.
-int	is_rrarrb_a(t_node *a, t_node *b, int c)
-{
-	int	i;
-
-	i = 0;
-	if (good_place_in_a(a, c))
-		i = lst_len(a) - good_place_in_a(a, c);
-	if ((i < (lst_len(b) - ft_find_index(b, c))) && ft_find_index(b, c))
-		i = lst_len(b) - ft_find_index(b, c);
-	return (i);
-}
-
-// This function calculates the required amount of rotation.
-// Calculations are done for ra+rrb case.
-int	is_rarrb_a(t_node *a, t_node *b, int c)
-{
-	int	i;
-
-	i = 0;
-	if (ft_find_index(b, c))
-		i = lst_len(b) - ft_find_index(b, c);
-	i = good_place_in_a(a, c) + i;
-	return (i);
-}
-
-// This function calculates the required amount of rotation.
-// Calculations are done for rra+rb case.
-int	is_rrarb_a(t_node *a, t_node *b, int c)
-{
-	int	i;
-
-	i = 0;
-	if (good_place_in_a(a, c))
-		i = lst_len(a) - good_place_in_a(a, c);
-	i = ft_find_index(b, c) + i;
-	return (i);
-}
-
-int	ft_rotate_type_ba(t_node *a, t_node *b)
+void	push_sort_a(t_node **stack_a, t_node **stack_b)
 {
 	int		i;
+	char	s;
 	t_node	*tmp;
 
-	tmp = b;
-	i = INT_MAX;
-	while (tmp)
-	{
-		if (i > is_rarb_a(a, b, tmp->nbr))
-			i = is_rarb_a(a, b, tmp->nbr);
-		if (i > is_rrarrb_a(a, b, tmp->nbr))
-			i = is_rrarrb_a(a, b, tmp->nbr);
-		if (i > is_rarrb_a(a, b, tmp->nbr))
-			i = is_rarrb_a(a, b, tmp->nbr);
-		if (i > is_rrarb_a(a, b, tmp->nbr))
-			i = is_rrarb_a(a, b, tmp->nbr);
-		tmp = tmp->next;
-	}
-	return (i);
-}
-
-void	ft_sort_a(t_node **stack_a, t_node **stack_b)
-{
-	int		i;
-	t_node	*tmp;
-
+	s = 'a';
 	while (*stack_b)
 	{
 		tmp = *stack_b;
-		i = ft_rotate_type_ba(*stack_a, *stack_b);
+		i = ft_rotate_type(*stack_a, *stack_b, s);
 		while (i >= 0)
 		{
-			if (i == is_rarb_a(*stack_a, *stack_b, tmp->nbr))
-				i = rarb(stack_a, stack_b, tmp->nbr, 'b');
-			else if (i == is_rarrb_a(*stack_a, *stack_b, tmp->nbr))
-				i = rarrb(stack_a, stack_b, tmp->nbr, 'b');
-			else if (i == is_rrarrb_a(*stack_a, *stack_b, tmp->nbr))
-				i = rrarrb(stack_a, stack_b, tmp->nbr, 'b');
-			else if (i == is_rrarb_a(*stack_a, *stack_b, tmp->nbr))
-				i = rrarb(stack_a, stack_b, tmp->nbr, 'b');
+			if (i == is_rarb(*stack_a, *stack_b, tmp->nbr, s))
+				i = rarb(stack_a, stack_b, tmp->nbr, s);
+			else if (i == is_rarrb(*stack_a, *stack_b, tmp->nbr, s))
+				i = rarrb(stack_a, stack_b, tmp->nbr, s);
+			else if (i == is_rrarrb(*stack_a, *stack_b, tmp->nbr, s))
+				i = rrarrb(stack_a, stack_b, tmp->nbr, s);
+			else if (i == is_rrarb(*stack_a, *stack_b, tmp->nbr, s))
+				i = rrarb(stack_a, stack_b, tmp->nbr, s);
 			else
 				tmp = tmp->next;
 		}
@@ -397,7 +367,7 @@ void	ft_sort_a(t_node **stack_a, t_node **stack_b)
 // - stack_b : Adresse de la pile B
 //
 
-void	ft_sort_b(t_node **stack_a, t_node **stack_b)
+void	sort_b(t_node **stack_a, t_node **stack_b)
 {
 	while (lst_len(*stack_b) < 2 && lst_len(*stack_a) > 3
 		&& !is_sorted(stack_a))
@@ -424,8 +394,8 @@ void	ft_sort(t_node **stack_a, t_node **stack_b)
 {
 	int	i;
 
-	ft_sort_b(stack_a, stack_b);
-	ft_sort_a(stack_a, stack_b);
+	sort_b(stack_a, stack_b);
+	push_sort_a(stack_a, stack_b);
 	i = ft_find_index(*stack_a, ft_min(*stack_a));
 	if (i < lst_len(*stack_a) - i)
 	{
