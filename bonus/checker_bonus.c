@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:59:36 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/25 16:17:14 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:20:58 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int ac, char **av)
 		return (0);
 	else if (ac == 2)
 		av = ft_split(av[i--], ' ');
-	stack_init(&a, av + i);
+	stack_init(&a, av + i, i);
 	gnl_call(&a, &b, i, av);
 	if (is_sorted(&a) == 1 && lst_len(b) == 0)
 		luffy();
