@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 11:05:46 by kasingh           #+#    #+#             */
-/*   Updated: 2023/12/18 12:34:40 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:06:47 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <stddef.h>
+
 typedef struct s_list
 {
 	void			*content;

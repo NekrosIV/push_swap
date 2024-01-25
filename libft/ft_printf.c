@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 11:03:20 by kasingh           #+#    #+#             */
-/*   Updated: 2023/12/18 12:32:55 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:06:36 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	ft_check_format(char c, va_list arg)
 {
 	int		len;
 	char	*x;
-	char	*X;
+	char	*bigx;
 
 	len = 0;
 	x = "0123456789abcdef";
-	X = "0123456789ABCDEF";
+	bigx = "0123456789ABCDEF";
 	if (c == 'c')
 		len = len + ft_print_char(va_arg(arg, int));
 	else if (c == 's')
@@ -48,7 +48,7 @@ int	ft_check_format(char c, va_list arg)
 	else if (c == 'x')
 		len = len + ft_putnbr_base_16(va_arg(arg, unsigned int), x, 0);
 	else if (c == 'X')
-		len = len + ft_putnbr_base_16(va_arg(arg, unsigned int), X, 0);
+		len = len + ft_putnbr_base_16(va_arg(arg, unsigned int), bigx, 0);
 	else if (c == '%')
 		len = len + ft_print_char('%');
 	return (len);
