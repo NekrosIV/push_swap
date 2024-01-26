@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:36:51 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/23 11:39:37 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/26 15:41:54 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ int	ft_find_index(t_node *a, int nbr)
 	int	i;
 
 	i = 0;
-	while (a->nbr != nbr)
+	while (a)
 	{
+		if (a->nbr == nbr)
+			return (i);
 		a = a->next;
 		i++;
 	}
-	a->index = 0;
-	return (i);
+	return (-1);
 }

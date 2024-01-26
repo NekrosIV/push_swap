@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:59:36 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/25 17:20:58 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:56:48 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int	which_action2(char *str, t_node **a, t_node **b)
 {
-	if (ft_strncmp(str, "ra", 2) == 0)
+	if (ft_strncmp(str, "ra\n", 3) == 0)
 		rotate(a);
-	else if (ft_strncmp(str, "rb", 2) == 0)
+	else if (ft_strncmp(str, "rb\n", 3) == 0)
 		rotate(b);
-	else if (ft_strncmp(str, "rr", 2) == 0)
+	else if (ft_strncmp(str, "rr\n", 3) == 0)
 	{
 		rotate(a);
 		rotate(b);
 	}
-	else if (ft_strncmp(str, "rra", 3) == 0)
+	else if (ft_strncmp(str, "rra\n", 4) == 0)
 		rrotate(a);
-	else if (ft_strncmp(str, "rrb", 3) == 0)
+	else if (ft_strncmp(str, "rrb\n", 4) == 0)
 		rrotate(b);
-	else if (ft_strncmp(str, "rrr", 3) == 0)
+	else if (ft_strncmp(str, "rrr\n", 4) == 0)
 	{
 		rrotate(a);
 		rrotate(b);
@@ -42,18 +42,18 @@ int	which_action(char *str, t_node **a, t_node **b)
 	int	i;
 
 	i = 0;
-	if (ft_strncmp(str, "sa", 2) == 0)
+	if (ft_strncmp(str, "sa\n", 3) == 0)
 		swap(a);
-	else if (ft_strncmp(str, "sa", 2) == 0)
+	else if (ft_strncmp(str, "sa\n", 3) == 0)
 		swap(b);
-	else if (ft_strncmp(str, "sb", 2) == 0)
+	else if (ft_strncmp(str, "sb\n", 3) == 0)
 	{
 		swap(a);
 		swap(b);
 	}
-	else if (ft_strncmp(str, "pa", 2) == 0)
+	else if (ft_strncmp(str, "pa\n", 3) == 0)
 		push(b, a);
-	else if (ft_strncmp(str, "pb", 2) == 0)
+	else if (ft_strncmp(str, "pb\n", 3) == 0)
 		push(a, b);
 	else
 		i = which_action2(str, a, b);
@@ -80,7 +80,7 @@ void	gnl_call(t_node **a, t_node **b, int flag, char **av)
 				free_split(av);
 			free_stack(a);
 			free_stack(b);
-			ft_putendl_fd("Error", 2);
+			ft_putendl_fd("Error\n", 3);
 			usopp();
 			exit(1);
 		}
