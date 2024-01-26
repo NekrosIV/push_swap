@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror -g3
 LIBFTDIR = ./libft
 
 SRCS = ./src/swap.c ./src/push.c ./src/rotate.c ./src/rrotate.c ./src/ft_itoa_nosigne.c ./src/lst_utils.c ./src/lst_utils2.c \
-		./src/algo.c ./src/free.c ./src/parsing.c ./src/stack_init.c 
+		./src/algo.c ./src/free.c ./src/parsing.c ./src/stack_init.c ./src/good_place.c ./src/algo_do_action.c ./src/algo_what_action.c \
+		./src/ft_sort_three.c ./src/stack_init_utils.c
 
 SRC_main = ./src/push_swap.c 
 	

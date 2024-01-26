@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 12:05:22 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/25 16:59:00 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:24:05 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,20 @@
 typedef struct s_node
 {
 	int				nbr;
-	int				index;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
+
+typedef struct s_utils
+{
+	int				index_a;
+	int				index_b;
+	int				good_place_in_a;
+	int				good_place_in_b;
+	int				lst_len_a;
+	int				lst_len_b;
+	char			s;
+}					t_utils;
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
@@ -69,6 +79,18 @@ int					lst_len(t_node *stack);
 int					ft_find_index(t_node *a, int nbr);
 
 void				ft_sort(t_node **stack_a, t_node **stack_b);
+void				ft_sort_three(t_node **a);
+int					good_place_in_a(t_node *stack_a, int nbr_push);
+int					good_place_in_b(t_node *stack_b, int nbr_push);
+int					rarb(t_node **a, t_node **b, int c, char s);
+int					rrarrb(t_node **a, t_node **b, int c, char s);
+int					rrarb(t_node **a, t_node **b, int c, char s);
+int					rarrb(t_node **a, t_node **b, int c, char s);
+int					is_rarb(t_utils **s);
+int					is_rrarrb(t_utils **s);
+int					is_rrarb(t_utils **s);
+int					is_rarrb(t_utils **s);
+void				stack_init_utils(t_node *a, t_node *b, int c, t_utils **s);
 
 char				*get_next_line(int fd);
 char				*ft_strdup_gnl(const char *src);
