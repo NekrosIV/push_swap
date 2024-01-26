@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:20:43 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/25 11:53:46 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/26 12:18:29 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ int	is_rarb(t_node *a, t_node *b, int c, char s)
 {
 	int	i;
 
+	i = 0;
 	if (s == 'b')
 	{
 		i = good_place_in_b(b, c);
@@ -206,7 +207,7 @@ int	is_rrarrb(t_node *a, t_node *b, int c, char s)
 	{
 		if (good_place_in_a(a, c))
 			i = lst_len(a) - good_place_in_a(a, c);
-		if (i < (lst_len(b) - ft_find_index(b, c)))
+		if ((i < (lst_len(b) - ft_find_index(b, c))))
 			i = lst_len(b) - ft_find_index(b, c);
 	}
 	return (i);
@@ -227,9 +228,9 @@ int	is_rrarb(t_node *a, t_node *b, int c, char s)
 	}
 	else
 	{
-		if (ft_find_index(b, c))
-			i = lst_len(b) - ft_find_index(b, c);
-		i = good_place_in_a(a, c) + i;
+		if (good_place_in_a(a, c))
+			i = lst_len(a) - good_place_in_a(a, c);
+		i = ft_find_index(b, c) + i;
 	}
 	return (i);
 }
@@ -249,9 +250,9 @@ int	is_rarrb(t_node *a, t_node *b, int c, char s)
 	}
 	else
 	{
-		if (good_place_in_a(a, c))
-			i = lst_len(a) - good_place_in_a(a, c);
-		i = ft_find_index(b, c) + i;
+		if (ft_find_index(b, c))
+			i = lst_len(b) - ft_find_index(b, c);
+		i = good_place_in_a(a, c) + i;
 	}
 	return (i);
 }
