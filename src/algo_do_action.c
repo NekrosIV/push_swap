@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:13:41 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/26 17:23:52 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/27 11:41:39 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int	rarb(t_node **a, t_node **b, int c, char s)
 	return (-1);
 }
 
-// This function rotate both stack_a and stack_b in the
-// reverse direction as required amount.
 int	rrarrb(t_node **a, t_node **b, int c, char s)
 {
 	if (s == 'b')
@@ -64,8 +62,6 @@ int	rrarrb(t_node **a, t_node **b, int c, char s)
 	return (-1);
 }
 
-// This function rotate the stack_a in reverse direction,
-// the stack_b in oppsite direction of stack_a as required amount.
 int	rrarb(t_node **a, t_node **b, int c, char s)
 {
 	if (s == 'b')
@@ -87,8 +83,6 @@ int	rrarb(t_node **a, t_node **b, int c, char s)
 	return (-1);
 }
 
-// This function rotate the stack_b in reverse direction,
-// the stack_a in oppsite direction of stack_a as required amount.
 int	rarrb(t_node **a, t_node **b, int c, char s)
 {
 	if (s == 'b')

@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:20:43 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/26 17:24:39 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:57:27 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,4 +160,5 @@ void	ft_sort(t_node **stack_a, t_node **stack_b)
 		while ((*stack_a)->nbr != ft_min(*stack_a))
 			rra(stack_a);
 	}
+	free(s);
 }

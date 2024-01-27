@@ -6,16 +6,12 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:16:28 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/26 17:16:31 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/27 11:46:02 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// This function calculates how many times
-// we should rotate the stacks together.
-// Because after a certain amoun of rotate, we will
-// proceed only with one stack rotation.
 int	is_rarb(t_utils **s)
 {
 	int	i;
@@ -36,11 +32,6 @@ int	is_rarb(t_utils **s)
 	return (i);
 }
 
-// This function calculates how many times we should rotate the stacks together.
-// Because after a certain amoun of rotate, we will proceed only with one stack
-// rotation. Since here we have reverse rotate,rather than index number,
-// we check reverse index number which is
-// calculated by list_size - index_number.
 int	is_rrarrb(t_utils **s)
 {
 	int	i;
@@ -63,8 +54,6 @@ int	is_rrarrb(t_utils **s)
 	return (i);
 }
 
-// Again, this function makes similar calculations.
-// This function do same calculations for rra+rb case.
 int	is_rrarb(t_utils **s)
 {
 	int	i;
@@ -85,8 +74,6 @@ int	is_rrarb(t_utils **s)
 	return (i);
 }
 
-// Again, this function makes similar calculations.
-// This function do same calculations for ra+rrb case.
 int	is_rarrb(t_utils **s)
 {
 	int	i;

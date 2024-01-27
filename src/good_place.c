@@ -6,15 +6,12 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:11:06 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/26 17:11:12 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/27 11:43:49 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// This function finds the correct place of the number in stack_b.
-// In other words, it check what index number nbr_push will get
-// after it is being pushed to the stack_b.
 int	good_place_in_b(t_node *stack_b, int nbr_push)
 {
 	int		i;
@@ -38,13 +35,10 @@ int	good_place_in_b(t_node *stack_b, int nbr_push)
 	return (i);
 }
 
-// This function finds the correct place of the number in stack_a.
-// In other words, it check what index number nbr_push will get
-// after it is being pushed to the stack_a.
 int	good_place_in_a(t_node *stack_a, int nbr_push)
 {
-	int i;
-	t_node *tmp;
+	int		i;
+	t_node	*tmp;
 
 	i = 1;
 	if (nbr_push < stack_a->nbr && nbr_push > ft_find_last(stack_a)->nbr)
