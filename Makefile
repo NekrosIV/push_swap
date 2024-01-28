@@ -2,7 +2,7 @@ NAME = push_swap
 NAME_BONUS = checker
 LIBFTNAME = libft.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror 
 LIBFTDIR = ./libft
 
 SRCS = ./src/swap.c ./src/push.c ./src/rotate.c ./src/rrotate.c ./src/ft_itoa_nosigne.c ./src/lst_utils.c ./src/lst_utils2.c \

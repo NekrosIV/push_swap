@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:43:08 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/23 11:45:41 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/28 11:32:23 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ int	is_good_int(char *str)
 	max_len = ft_strlen(int_limit);
 	len_str = ft_strlen(&str[i]);
 	if (len_str > max_len)
-		return (0);
+		return (free(int_limit), 0);
 	if (len_str == max_len)
 		if (ft_strncmp(&str[i], int_limit, len_str) > 0)
-			return (0);
-	free(int_limit);
-	return (1);
+			return (free(int_limit), 0);
+	return (free(int_limit), 1);
 }
