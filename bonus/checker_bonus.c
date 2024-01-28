@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:59:36 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/25 17:56:48 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/28 11:39:20 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ void	gnl_call(t_node **a, t_node **b, int flag, char **av)
 				free_split(av);
 			free_stack(a);
 			free_stack(b);
-			ft_putendl_fd("Error\n", 3);
-			usopp();
+			ft_putendl_fd("Error", 2);
 			exit(1);
 		}
 		free(str);
