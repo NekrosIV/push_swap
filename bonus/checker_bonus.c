@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:59:36 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/28 11:39:20 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/31 11:09:06 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	which_action(char *str, t_node **a, t_node **b)
 	i = 0;
 	if (ft_strncmp(str, "sa\n", 3) == 0)
 		swap(a);
-	else if (ft_strncmp(str, "sa\n", 3) == 0)
-		swap(b);
 	else if (ft_strncmp(str, "sb\n", 3) == 0)
+		swap(b);
+	else if (ft_strncmp(str, "ss\n", 3) == 0)
 	{
 		swap(a);
 		swap(b);

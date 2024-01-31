@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:02:05 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/26 14:03:24 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/31 11:08:05 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	stack_init(t_node **a, char **av, int split)
 	int	i;
 
 	i = 0;
+	if (!av[i])
+		free_err(a, av, split);
 	while (av[i])
 	{
 		if (!is_good_syntax(av[i]))

@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:19:56 by kasingh           #+#    #+#             */
-/*   Updated: 2024/01/25 16:43:18 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/01/31 11:01:09 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	a = 0;
 	b = 0;
 	i = 1;
-	if (ac < 2 || !av[1][0])
+	if (ac < 2)
 		return (0);
 	else if (ac == 2)
 		av = ft_split(av[i--], ' ');
